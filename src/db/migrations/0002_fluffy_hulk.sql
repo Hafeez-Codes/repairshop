@@ -1,0 +1,1 @@
+ALTER TABLE "tickets" RENAME COLUMN "updated" TO "updated_at";
