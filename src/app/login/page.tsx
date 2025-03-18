@@ -9,6 +9,7 @@ export default function LoginPage() {
 				style={{
 					fontSize: 20,
 				}}
+				asChild
 			>
 				<LoginLink>Sign In</LoginLink>
 			</Button>
