@@ -33,7 +33,7 @@ export function TextAreaWithLabel<S>({
 			render={({ field }) => (
 				<FormItem>
 					<FormLabel
-						className="text-base mb-2"
+						className="text-base"
 						htmlFor={nameInSchema}
 					>
 						{fieldTitle}
