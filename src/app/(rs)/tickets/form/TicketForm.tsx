@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { InputWithLabel } from '@/components/inputs/inputWithLabel';
 import { SelectWithLabel } from '@/components/inputs/SelectWithLabel';
 import { TextAreaWithLabel } from '@/components/inputs/TextAreaWithLabel';
+import { CheckboxWithLabel } from '@/components/inputs/CheckboxWithLabel';
 
 import {
 	insertTicketSchema,
@@ -67,6 +68,12 @@ export default function TicketForm({ customer, ticket }: Props) {
 							disabled={true}
 						/>
 
+						<CheckboxWithLabel<insertTicketSchemaType>
+							fieldTitle="Completed"
+							nameInSchema="completed"
+							message="Yes"
+						/>
+
 						<div className="mt-4 space-y-2">
 							<h3 className="text-lg">Customer Info</h3>
 							<hr className="w-4/5" />
@@ -86,7 +93,10 @@ export default function TicketForm({ customer, ticket }: Props) {
 						</div>
 					</div>
 
-					<div className="flex flex-col gap-4 w-full max-w-xs">
+					<div
+						className="flex flex-col gap-4 w-full max-w-xs"
+						suppressHydrationWarning={true}
+					>
 						<TextAreaWithLabel<insertTicketSchemaType>
 							fieldTitle="Description"
 							nameInSchema="description"
