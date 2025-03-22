@@ -32,17 +32,14 @@ export function TextAreaWithLabel<S>({
 			name={nameInSchema}
 			render={({ field }) => (
 				<FormItem>
-					<FormLabel
-						className="text-base"
-						htmlFor={nameInSchema}
-					>
+					<FormLabel className="text-base" htmlFor={nameInSchema}>
 						{fieldTitle}
 					</FormLabel>
 
 					<FormControl>
 						<Textarea
 							id={nameInSchema}
-							className={className}
+							className={`disabled:text-blue-500 dark:disabled:text-yellow-300 disabled:opacity-75  ${className}`}
 							{...props}
 							{...field}
 						/>
