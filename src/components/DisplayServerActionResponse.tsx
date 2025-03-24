@@ -43,8 +43,7 @@ export function DisplayServerActionResponse({ result }: Props) {
 					type="error"
 					content={Object.keys(validationErrors).map((key) => (
 						<p key={key}>
-							{`${key}: $
-							{
+							{`${key}: ${
 								validationErrors[
 									key as keyof typeof validationErrors
 								]
