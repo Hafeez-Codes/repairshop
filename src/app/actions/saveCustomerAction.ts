@@ -32,7 +32,6 @@ export const saveCustomerAction = actionClient
 			const isAuth = await isAuthenticated();
 
 			if (!isAuth) redirect('/login');
-
 			// New cutomer
 			if (customer.id === 0) {
 				const result = await db
