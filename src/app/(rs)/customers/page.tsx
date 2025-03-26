@@ -16,6 +16,10 @@ export default async function Customers({
 
 	const results = await getCustomerSearchResults(searchText);
 
+	// const results = searchText
+	// 	? await getCustomerSearchResults(searchText)
+	// 	: [];
+
 	return (
 		<>
 			<CustomerSearch />
