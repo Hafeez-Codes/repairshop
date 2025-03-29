@@ -14,7 +14,7 @@ export default async function Customers({
 
 	if (!searchParams) return <CustomerSearch />;
 
-	const results = await getCustomerSearchResults(searchText);
+	const results = await getCustomerSearchResults(searchText!);
 
 	// const results = searchText
 	// 	? await getCustomerSearchResults(searchText)
