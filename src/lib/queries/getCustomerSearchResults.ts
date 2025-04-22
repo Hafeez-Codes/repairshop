@@ -3,6 +3,10 @@ import { customers } from '@/db/schema';
 import { ilike, or, sql } from 'drizzle-orm';
 
 export async function getCustomerSearchResults(searchText: string) {
+	if (!searchText || typeof searchText !== 'string') {
+		return []; // Return an empty array if searchText is invalid
+	}
+
 	const results = await db
 		.select()
 		.from(customers)
@@ -16,6 +20,7 @@ export async function getCustomerSearchResults(searchText: string) {
 					customers.lastName
 				})) LIKE ${`%${searchText.toLowerCase().replace(' ', '%')}%`}`
 			)
-		);
+		)
+		.orderBy(customers.lastName);
 	return results;
 }
