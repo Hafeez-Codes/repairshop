@@ -33,7 +33,7 @@ import {
 } from 'lucide-react';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useState, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { usePolling } from '@/app/hooks/usePolling';
 import { Button } from '@/components/ui/button';
 import Filter from '@/components/react-table/Filter';
@@ -175,6 +175,18 @@ export default function TicketTable({ data }: Props) {
 		getSortedRowModel: getSortedRowModel(),
 	});
 
+	useEffect(() => {
+		const currentPageIndex = table.getState().pagination.pageIndex;
+		const pageCount = table.getPageCount();
+		const columnFilters = table.getState().columnFilters;
+
+		if (pageCount <= currentPageIndex && currentPageIndex > 0) {
+			const params = new URLSearchParams(searchParams.toString());
+			params.set('page', '1');
+			router.replace(`?${params.toString()}`, { scroll: false });
+		}
+	}, [columnFilters]); // eslint-disable-line react-hooks/exhaustive-deps
+
 	return (
 		<div className="mt-6 flex flex-col gap-4">
 			<div className="mt-6 rounded-lg overflow-hidden border border-border">
@@ -246,7 +258,7 @@ export default function TicketTable({ data }: Props) {
 					<p className="whitespace-nowrap font-bold">
 						{`Page ${
 							table.getState().pagination.pageIndex + 1
-						} of ${table.getPageCount()}`}
+						} of ${Math.max(1, table.getPageCount())}`}
 						&nbsp;&nbsp;
 						{`[${table.getFilteredRowModel().rows.length} ${
 							table.getFilteredRowModel().rows.length !== 1
